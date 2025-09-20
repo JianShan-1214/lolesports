@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 # 安裝 uv
 RUN pip install uv
 
-# 複製專案配置檔案
-COPY pyproject.toml uv.lock ./
+# 複製專案配置檔案和 README
+COPY pyproject.toml uv.lock README.md ./
 
 # 建立必要目錄
 RUN mkdir -p data logs

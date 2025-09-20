@@ -140,7 +140,7 @@ cython_debug/
 
 # ===== UV (Python Package Manager) =====
 .uv/
-uv.lock
+# uv.lock - 保留此檔案以確保依賴版本一致性
 
 # ===== 專案特定檔案 =====
 # 資料庫檔案
