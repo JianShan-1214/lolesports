@@ -12,17 +12,19 @@ RUN apt-get update && apt-get install -y \
 # 安裝 uv
 RUN pip install uv
 
-# 複製專案檔案
+# 複製專案配置檔案
 COPY pyproject.toml uv.lock ./
-COPY src/ ./src/
-COPY config/ ./config/
-COPY main.py ./
 
 # 建立必要目錄
 RUN mkdir -p data logs
 
 # 安裝 Python 依賴
 RUN uv sync --frozen
+
+# 複製應用程式檔案
+COPY src/ ./src/
+COPY config/ ./config/
+COPY main.py ./
 
 # 暴露 Streamlit 預設埠
 EXPOSE 8501
