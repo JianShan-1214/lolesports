@@ -1,0 +1,337 @@
+# LOL 比賽通知系統 .gitignore
+
+# ===== Python =====
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ===== UV (Python Package Manager) =====
+.uv/
+uv.lock
+
+# ===== 專案特定檔案 =====
+# 資料庫檔案
+*.db
+*.sqlite
+*.sqlite3
+data/subscriptions.db
+data/*.db
+
+# 配置檔案（包含敏感資訊）
+config/config.json
+config/production.json
+config/local.json
+.env.local
+.env.production
+.env.development
+
+# 日誌檔案
+logs/
+*.log
+app.log
+error.log
+debug.log
+test_app.log
+
+# 快取檔案
+data/cache/
+cache/
+*.cache
+
+# 臨時檔案
+tmp/
+temp/
+*.tmp
+*.temp
+
+# 備份檔案
+*.bak
+*.backup
+*.old
+
+# ===== Streamlit =====
+.streamlit/
+streamlit_app.log
+
+# ===== IDE 和編輯器 =====
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===== 作業系統 =====
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== 測試相關 =====
+# 測試產生的檔案
+test_*.db
+test_*.log
+test_subscriptions.db
+test_app.log
+*_test.db
+*_test.log
+
+# 測試覆蓋率報告
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# ===== 部署和運行 =====
+# Docker
+.dockerignore
+Dockerfile.local
+
+# 運行時檔案
+*.pid
+*.sock
+
+# SSL 憑證
+*.pem
+*.key
+*.crt
+*.cert
+
+# ===== 開發工具 =====
+# Jupyter
+.jupyter/
+*.ipynb
+
+# 效能分析
+*.prof
+*.pstats
+
+# 記憶體分析
+*.memprof
+
+# ===== 專案文件（可選） =====
+# 如果不想追蹤某些文件
+# README.local.md
+# NOTES.md
+# TODO.md
+
+# ===== 第三方服務 =====
+# Telegram Bot Token（額外保護）
+*bot_token*
+*telegram_token*
+
+# API Keys
+*api_key*
+*secret_key*
+
+# ===== 其他 =====
+# 壓縮檔案
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 圖片快取
+*.png.cache
+*.jpg.cache
+*.gif.cache
+
+# 系統監控資料
+metrics/
+monitoring/
+*.metrics
+
+# 效能測試結果
+benchmark_results/
+performance_reports/
