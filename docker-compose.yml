@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  lol-notification-system:
+    build: .
+    container_name: lol-notification-system
+    ports:
+      - "8501:8501"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - DATABASE_PATH=/app/data/subscriptions.db
+      - LOGGING_LEVEL=${LOGGING_LEVEL:-INFO}
+      - LOGGING_FILE_PATH=/app/logs/app.log
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./.env:/app/.env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# 可選：加入 nginx 反向代理
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: lol-notification-nginx
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     - lol-notification-system
+  #   restart: unless-stopped

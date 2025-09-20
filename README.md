@@ -23,55 +23,44 @@
 
 ### 1. 環境需求
 
-- Python 3.11 或更高版本
-- uv 套件管理工具
+- Docker 20.10 或更高版本
+- Docker Compose 2.0 或更高版本
 
-### 2. 安裝uv
-
-```bash
-# macOS/Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-### 3. 專案設定
+### 2. 專案設定
 
 ```bash
 # 複製專案
 git clone <repository-url>
 cd lol-match-notification-system
 
-# 安裝相依套件
-uv sync
-
-# 設定Python版本
-uv python pin 3.11
+# 複製環境變數範本
+cp .env.template .env
 ```
 
-### 4. 配置設定
+### 3. 配置 Telegram Bot
 
-1. 建立Telegram Bot:
-   - 在Telegram中搜尋 @BotFather
-   - 使用 `/newbot` 指令建立新的Bot
-   - 取得Bot Token
+1. 建立 Telegram Bot:
+   - 在 Telegram 中搜尋 @BotFather
+   - 使用 `/newbot` 指令建立新的 Bot
+   - 取得 Bot Token
 
-2. 設定配置檔案:
+2. 設定環境變數:
    ```bash
-   # 編輯 config/config.json
-   {
-     "telegram": {
-       "bot_token": "YOUR_BOT_TOKEN_HERE"
-     }
-   }
+   # 編輯 .env 檔案
+   TELEGRAM_BOT_TOKEN=your_actual_bot_token
    ```
 
-### 5. 執行應用程式
+### 4. 使用 Docker 部署
 
 ```bash
-# 啟動Streamlit應用程式
-uv run streamlit run main.py
+# 建置並啟動服務
+docker-compose up -d
+
+# 查看服務狀態
+docker-compose ps
+
+# 查看日誌
+docker-compose logs -f
 ```
 
 應用程式將在 `http://localhost:8501` 啟動。
@@ -99,45 +88,46 @@ uv run streamlit run main.py
 3. 監控背景任務執行狀態
 4. 檢視通知歷史記錄
 
-## 開發指南
+## 管理和維護
 
-### 專案結構
-
-```
-├── main.py                 # 應用程式進入點
-├── pyproject.toml         # 專案配置
-├── config/                # 配置管理
-├── src/
-│   ├── models/            # 資料模型
-│   ├── services/          # 業務邏輯
-│   ├── ui/                # 使用者介面
-│   └── utils/             # 工具函數
-├── tests/                 # 測試檔案
-├── data/                  # 本地資料存儲
-└── logs/                  # 應用程式日誌
-```
-
-### 執行測試
+### 容器管理
 
 ```bash
-# 執行所有測試
-uv run pytest
+# 停止服務
+docker-compose down
 
-# 執行測試並顯示覆蓋率
-uv run pytest --cov=src tests/
+# 重新啟動服務
+docker-compose restart
 
-# 執行特定測試
-uv run pytest tests/unit/test_models.py
+# 查看容器狀態
+docker-compose ps
+
+# 查看即時日誌
+docker-compose logs -f lol-notification-system
 ```
 
-### 程式碼格式化
+### 資料備份
 
 ```bash
-# 格式化程式碼
-uv run black src/
+# 備份資料庫
+docker-compose exec lol-notification-system cp /app/data/subscriptions.db /app/data/backup_$(date +%Y%m%d).db
 
-# 檢查程式碼風格
-uv run flake8 src/
+# 備份到本地
+docker cp lol-notification-system:/app/data/subscriptions.db ./backup_$(date +%Y%m%d).db
+```
+
+### 系統升級
+
+```bash
+# 停止服務
+docker-compose down
+
+# 更新程式碼
+git pull origin main
+
+# 重新建置並啟動
+docker-compose build --no-cache
+docker-compose up -d
 ```
 
 ## 故障排除
